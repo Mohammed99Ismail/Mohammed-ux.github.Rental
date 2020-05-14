@@ -1,0 +1,14 @@
+﻿@model VenMovie.Models.Movie
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>model.Name</h2>
+<ul>
+    <li>@Model.Genre.Name</li>
+    <li>@Model.ReleazeDate.ToShortDateString()</li>
+    <li>@Model.DateAdded.ToShortDateString()</li>
+    <li>@Model.NumberInStock</li>
+</ul>
+

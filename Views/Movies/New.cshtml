@@ -1,0 +1,50 @@
+﻿@model VenMovie.ViewModel.MovieGenre
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+.input-validation-error {
+    border:2px solid red;
+}
+
+</style>
+<h2>@Model.Title</h2>
+@using (Html.BeginForm("Create", "Movies"))
+{
+<div class="form-group">
+        @Html.LabelFor(c => c.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Name)
+</div>
+
+<div class="form-group">
+        @Html.LabelFor(c => c.ReleazeDate)
+        @Html.TextBoxFor(m => m.ReleazeDate, "{0:d MMM yyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.ReleazeDate)
+</div>
+
+<div class="form-group">
+        @Html.LabelFor(c => c.GenreId)
+        @Html.DropDownListFor(m => m.GenreId, new SelectList(Model.Genre, "Id", "Name"), "Select Genre Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.GenreId)
+</div>
+    <div class="form-group">
+        <label>
+            @Html.LabelFor(c => c.NumberInStock)
+            @Html.TextBoxFor(m => m.NumberInStock, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.NumberInStock)
+        </label>
+    </div>
+    @Html.HiddenFor(c =>c.Id)
+    @Html.AntiForgeryToken();
+    <button type="submit" class="btn btn-primary">
+        Save
+    </button>
+}
+@section scripts{
+@Scripts.Render("~/bundles/jqueryval");
+}
+
+
+
